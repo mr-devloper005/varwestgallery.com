@@ -10,7 +10,7 @@ export const pagesContent = {
       keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
     },
     hero: {
-      badge: 'Latest stories and visuals',
+      badge: '',
       title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
       description: 'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
       primaryCta: { label: 'Read latest stories', href: '/article' },
