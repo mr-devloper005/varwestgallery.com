@@ -108,8 +108,25 @@ const formatPlainText = (raw: string) => {
     .join('')
 }
 
-const summaryText = (post: SitePost) =>
-  post.summary || asText(getContent(post).description) || asText(getContent(post).excerpt) || 'Open this entry for more details.'
+const stripHtml = (value: string) =>
+  value
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+
+const summaryText = (post: SitePost) => {
+  const raw = post.summary || asText(getContent(post).description) || asText(getContent(post).excerpt)
+  const clean = raw ? stripHtml(raw) : ''
+  return clean || 'Open this entry for more details.'
+}
 const categoryOf = (post: SitePost, fallback: string) => asText(getContent(post).category) || post.tags?.[0] || fallback
 const mapSrcFor = (post: SitePost) => {
   const address = getField(post, ['address', 'location', 'city'])
@@ -412,14 +429,13 @@ function PdfDetail({ post, related }: { post: SitePost; related: SitePost[] }) {
   )
 }
 
-function ProfileDetail({ post, related }: { post: SitePost; related: SitePost[] }) {
+function ProfileDetail({ post, related: _related }: { post: SitePost; related: SitePost[] }) {
   const images = getImages(post)
   const role = getField(post, ['role', 'designation', 'company', 'location'])
   const website = getField(post, ['website', 'url'])
   const email = getField(post, ['email'])
   const phone = getField(post, ['phone', 'telephone', 'mobile'])
   const primaryImage = images[0]
-  const joinedDate = post.publishedAt || (post as SitePost & { createdAt?: string }).createdAt || ''
   const summary = summaryText(post)
   return (
     <section className="mx-auto max-w-[1440px] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">

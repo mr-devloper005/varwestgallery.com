@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { globalContent } from '@/editable/content/global.content'
 import { useEditableLocalAuthSession } from '@/editable/components/EditableLocalAuthForms'
@@ -9,7 +8,6 @@ import { useEditableLocalAuthSession } from '@/editable/components/EditableLocal
 export function EditableFooter() {
   const { session, logout } = useEditableLocalAuthSession()
   const year = new Date().getFullYear()
-  const browseLinks = SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile')
 
   return (
     <footer className="border-t border-white/10 bg-[#0f2144] text-[#efd2b0]">
