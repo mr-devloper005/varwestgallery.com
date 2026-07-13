@@ -2,22 +2,13 @@
 
 import { useMemo, useState, type CSSProperties } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { ChevronDown, LogIn, Menu, PlusCircle, Search, UserPlus, X } from 'lucide-react'
+import { LogIn, Menu, PlusCircle, Search, UserPlus, X } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { globalContent } from '@/editable/content/global.content'
 import { useEditableLocalAuthSession } from '@/editable/components/EditableLocalAuthForms'
 
-function navLabel(pathname: string) {
-  if (pathname.startsWith('/image')) return 'Images'
-  if (pathname.startsWith('/article')) return 'Stories'
-  if (pathname.startsWith('/listing')) return 'Studios'
-  return 'Explore'
-}
-
 export function EditableNavbar() {
   const [open, setOpen] = useState(false)
-  const pathname = usePathname()
   const { session, logout } = useEditableLocalAuthSession()
   const navVars = {
     '--editable-nav-bg': '#112851',
