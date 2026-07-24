@@ -304,7 +304,6 @@ function ImageDetail({ post, related }: { post: SitePost; related: SitePost[] })
             <Camera className="h-4 w-4" /> Curated image entry
           </div>
           <h1 className="mt-4 text-3xl font-black leading-[1.02] tracking-[-0.06em] text-white sm:text-4xl">{post.title}</h1>
-          <p className="mt-4 text-sm leading-7 text-white/68">{summaryText(post)}</p>
           <div className="mt-5 flex flex-wrap gap-2">
             <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white/80">
               {category}
