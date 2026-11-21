@@ -311,11 +311,6 @@ function ImageDetail({ post, related }: { post: SitePost; related: SitePost[] })
             <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white/80">
               {gallery.length} image{gallery.length === 1 ? '' : 's'}
             </span>
-            {post.publishedAt ? (
-              <span className="rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[11px] font-black uppercase tracking-[0.18em] text-white/80">
-                {new Date(post.publishedAt).toLocaleDateString()}
-              </span>
-            ) : null}
           </div>
           {supportImages.length ? (
             <div className="mt-6 grid grid-cols-3 gap-3">
@@ -605,7 +600,6 @@ function RelatedPanel({ task, post, related, compact = false }: { task: TaskKey;
           <div className="mt-4 grid gap-3 text-sm font-bold text-white/72">
             <p className="inline-flex items-center gap-2"><Tag className="h-4 w-4" /> Task: {taskConfig?.label || task}</p>
             <p className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Site: {SITE_CONFIG.name}</p>
-            {post.publishedAt ? <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p> : null}
           </div>
         </div>
       ) : null}
